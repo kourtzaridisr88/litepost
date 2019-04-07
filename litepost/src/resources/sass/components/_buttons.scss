@@ -1,0 +1,41 @@
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 7px 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+    transition: .15s ease-in-out;
+    outline: 0;
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: 0;
+    }
+
+    &--primary {
+        background-color: $primary;
+        color: $primaryTextLight;
+
+        &:hover {
+            background-color: $primaryDark;
+            color: $primaryTextLight;
+        }
+    }
+
+    &--alternative {
+        background-color: $alternative;
+        color: $primaryTextLight;
+
+        &:hover {
+            background-color: $alternativeDark;
+            color: $primaryTextLight;
+        }
+    }
+}
