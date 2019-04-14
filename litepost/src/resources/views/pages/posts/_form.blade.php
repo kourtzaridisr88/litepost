@@ -67,8 +67,9 @@
                     <label for="categories">Categories</label>
                     <select class="form-control form-control--small" multiple id="categories" name="categories[]" data-action="search->livesearch#search" data-target="livesearch.input">
                         @if(isset($post) || old('categories'))
-                            @foreach($post->categories as $category)
-                                <option value="{{ $category->slug }}" selected>{{ $category->title }}</option>
+                            <?php $categories = isset($post) ? $post->categories : old('categories', $post->categories) ?>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
                             @endforeach
                         @endif
                     </select>

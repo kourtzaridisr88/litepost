@@ -68,7 +68,7 @@ class PostsController extends BaseController
         $post->save();
 
         // CustomFields
-        $customFields = $request->input('custom_fields');
+        $customFields = $request->input('custom_fields') ?? [];
 
         foreach($customFields as $key => $value) {  
             $meta = new PostMeta();
@@ -134,7 +134,7 @@ class PostsController extends BaseController
         $post->save();
 
         // CustomFields
-        $customFields = $request->input('custom_fields');
+        $customFields = $request->input('custom_fields') ?? [];
         
         foreach($customFields as $key => $value) {
             $meta = $post->getMetaByKey($key);

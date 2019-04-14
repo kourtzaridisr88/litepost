@@ -20,7 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('slug', 155)->unique()->index();
 
             $table->bigInteger('post_type_id')->unsigned()->index();
-            $table->foreign('post_type_id')->references('id')->on('post_types')->onDelete('cascade');
+            $table->foreign('post_type_id')->references('id')->on('post_types');
             $table->timestamps();
 
         });

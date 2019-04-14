@@ -35,6 +35,8 @@
                     <form class="delete-form" action="{{ route('litepost.posts.destroy', ['id' => $post->id]) }}" method="POST" data-target="post.deleteForm">
                         {{ method_field('DELETE') }}
                         @csrf
+                        <!-- Hidden Global Inputs -->
+                        <input type="hidden" name="post_type_id" value="{{ $postType->id }}">
                     </form>
                 </div><!-- ./col -->
             </div><!-- ./row -->

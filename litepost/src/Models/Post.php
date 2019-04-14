@@ -3,6 +3,7 @@
 namespace Litepost\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Exception;
 
 class Post extends Model
 {
@@ -57,6 +58,8 @@ class Post extends Model
     {
         $field = $this->metas()->where('key', $key)->select('value')->first();
 
+        if($field == null) throw new Exception("Field with key \"{$key}\" does not exists", 1);
+        
         return is_array(json_decode($field->value)) 
             ? json_decode($field->value) 
             : $field->value;
