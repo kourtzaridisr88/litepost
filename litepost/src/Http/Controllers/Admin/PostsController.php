@@ -3,10 +3,13 @@
 namespace Litepost\Http\Controllers\Admin;
 
 use Litepost\Http\Controllers\BaseController;
+use Validator;
+use Session;
 use Illuminate\Http\Request;
 use Litepost\Models\Post;
 use Litepost\Models\PostType;
 use Litepost\Models\PostMeta;
+use Litepost\Models\Category;
 
 class PostsController extends BaseController
 {
@@ -51,12 +54,24 @@ class PostsController extends BaseController
     {
         $slug = str_slug($request->input('slug'));
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'post_type_id' => 'required',
             'title' => 'required',
             'slug' => 'required|unique:posts',
             'status' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            $categories = Category::find($request->input('categories'));
+            $request->merge([
+                'categories' => $categories
+            ]);
+
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $post = new Post();
         
@@ -117,12 +132,24 @@ class PostsController extends BaseController
     {
         $slug = str_slug($request->input('slug'));
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'post_type_id' => 'required',
             'title' => 'required',
             'slug' => 'required|unique:posts,slug,' . $id,
             'status' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            $categories = Category::find($request->input('categories'));
+            $request->merge([
+                'categories' => $categories
+            ]);
+
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->all());
+        }
 
         $post = Post::find($id);
 
@@ -139,7 +166,14 @@ class PostsController extends BaseController
         foreach($customFields as $key => $value) {
             $meta = $post->getMetaByKey($key);
 
-            $meta->value = is_array($value) ? json_encode($value) : $value;;
+            if($meta == null) {
+                $meta = new PostMeta();
+
+                $meta->post_id = $post->id;
+                $meta->key = $key;
+            }
+
+            $meta->value = is_array($value) ? json_encode($value) : $value;
 
             $meta->save();
         }

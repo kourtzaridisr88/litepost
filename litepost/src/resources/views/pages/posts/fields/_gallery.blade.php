@@ -3,9 +3,11 @@
     <input type="file" multiple class="form-control form-control--small" data-target="gallery.imagesInput" data-action="change->gallery#upload">
 
     <div class="row images__wrapper" data-target="gallery.imagesWrapper">
-        @if(isset($post) || old('custom_fields.' . $customField->fieldable->name))
+        @if(isset($post) && $post->field($customField->fieldable->name) !== '' || old('custom_fields.' . $customField->fieldable->name))
             @php
-                $images = isset($post) ? old('custom_fields.' . $customField->fieldable->name, $post->field($customField->fieldable->name ))  : old('custom_fields.' . $customField->fieldable->name)
+                $images = isset($post) 
+                        ? old('custom_fields.' . $customField->fieldable->name, $post->field($customField->fieldable->name)) 
+                        : old('custom_fields.' . $customField->fieldable->name)
             @endphp
 
             @foreach($images as $image)
@@ -18,7 +20,7 @@
         @endif
     </div>
 
-    @if ($errors->has($customField->fieldable->name))
+    @if($errors->has($customField->fieldable->name))
         <span class="invalid-feedback" role="alert">
             <strong>{{ $errors->first($customField->fieldable->name) }}</strong>
         </span>

@@ -19,7 +19,7 @@
 
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="text" class="form-control form-control--small {{ $errors->has('slug') ? ' is-invalid' : '' }}" id="slug" name="slug" value="{{ $val = isset($post->slug) ? old('title', $post->slug) : old('title') }}">
+                    <input type="text" class="form-control form-control--small {{ $errors->has('slug') ? ' is-invalid' : '' }}" id="slug" name="slug" value="{{ $val = isset($post->slug) ? old('title', $post->slug) : old('slug') }}">
 
                     @if ($errors->has('slug'))
                         <span class="invalid-feedback" role="alert">
@@ -65,9 +65,13 @@
 
                 <div class="form-group">
                     <label for="categories">Categories</label>
+                    @php
+                        $categories = isset($post) ? old('categories', $post->categories) : old('categories')
+                    @endphp
+
                     <select class="form-control form-control--small" multiple id="categories" name="categories[]" data-action="search->livesearch#search" data-target="livesearch.input">
-                        @if(isset($post) || old('categories'))
-                            <?php $categories = isset($post) ? $post->categories : old('categories', $post->categories) ?>
+                        
+                        @if(isset($categories))
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
                             @endforeach

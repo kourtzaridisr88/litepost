@@ -5,9 +5,10 @@
         id="{{ $customField->fieldable->name }}"
         name="custom_fields[{{ $customField->fieldable->name }}]" 
     >
-        {{ isset($post) ? old('custom_fields[' . $customField->fieldable->name . ']', $post->field($customField->fieldable->name)) 
-                        : old('custom_fields[' . $customField->fieldable->name . ']') 
-        }}
+        {!! isset($post) ? old('custom_fields.' . $customField->fieldable->name, $post->field($customField->fieldable->name)) 
+                        : old('custom_fields.' . $customField->fieldable->name) 
+        !!}                  
+        
     </textarea>
 
     @if ($errors->has($customField->fieldable->name))

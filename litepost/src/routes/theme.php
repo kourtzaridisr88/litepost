@@ -1,5 +1,5 @@
 <?php
-
+Route::get('/about', 'Theme\PagesController@about')->name('about');
 Route::group([
     'namespace' => 'Litepost\Http\Controllers\Theme'
 ], function() {

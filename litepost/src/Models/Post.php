@@ -58,7 +58,7 @@ class Post extends Model
     {
         $field = $this->metas()->where('key', $key)->select('value')->first();
 
-        if($field == null) throw new Exception("Field with key \"{$key}\" does not exists", 1);
+        if($field == null) return '';
         
         return is_array(json_decode($field->value)) 
             ? json_decode($field->value) 

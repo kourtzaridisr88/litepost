@@ -18,7 +18,7 @@ class CreatePostMetasTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('key')->index();
-            $table->text('value');
+            $table->text('value')->nullable();
 
             $table->bigInteger('post_id')->unsigned()->index();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
