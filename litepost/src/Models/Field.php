@@ -40,6 +40,10 @@ class Field extends Model
                 static::setField(new GalleryField(), $data);
                 break;
 
+            case 'file': 
+                static::setField(new FileField(), $data);
+                break;
+
             default: 
                 break;
         }

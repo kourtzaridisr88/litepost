@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 pt-5">
-                    <form class="edit-form" action="{{ route('litepost.posts.update', [ 'id' => $post->id ]) }}" method="POST">
+                    <form class="edit-form" action="{{ route('litepost.posts.update', [ 'id' => $post->id ]) }}" method="POST" enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         @csrf
                         @include('litepost::pages.posts._form')

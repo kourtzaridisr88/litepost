@@ -31,7 +31,7 @@ export default class extends Controller
         axios.post(this.api + 'images/store', formData)
             .then(function(response) {  
                 var images = response.data.images;
-
+                
                 images.forEach(image => {
                     _this.showImage(image);
                 });
@@ -43,7 +43,7 @@ export default class extends Controller
         const imagesWrapper = this.imagesWrapperTarget;
         var html = `<div class="image__wrapper col-md-3">
                     <span class="image__action" data-action="click->gallery#deleteImage">&times;</span>
-                    <img src="/uploads/images/` + image + `" class="img-thumbnail">
+                    <img src="/storage/images/` + image + `" class="img-thumbnail">
                     <input type="hidden" name="custom_fields[` + this.fieldableName + `][]" value="` + image + `">
                 </div>`;
         ;

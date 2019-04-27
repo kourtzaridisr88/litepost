@@ -19,19 +19,18 @@ class ImagesController extends BaseController
         $images = $request->all();
         
         $imageNames = [];
-        $path = public_path() . '/uploads/images/';
+        $path = public_path() . '/storage/images/';
 
         foreach($images as $image) {
             $originalName = time() . str_random(10) . '.' . $image->getClientOriginalExtension();
-            $originalImage = Image::make($image)->save($path . $originalName);
+            $originalImage = $image->storeAs('public/images', $originalName);
 
             array_push($imageNames, $originalName);
         }
 
         return response()->json([
             'images' => $imageNames
-        ], 200);
-        
+        ], 200);   
     }
 
     /**
@@ -42,7 +41,7 @@ class ImagesController extends BaseController
      */
     public function imageResizer($name, $width)
     {
-        $path = public_path() . '/uploads/images/';
+        $path = public_path() . '/storage/images/';
 
         $splittedName = explode('.', $name);
         $newName = $splittedName[0] . 'w=' . $width . '.' . $splittedName[1]; 
@@ -53,9 +52,7 @@ class ImagesController extends BaseController
             })
             ->save($path . $newName);
 
-        return '/uploads/images/' . $newName;
-
-
+        return '/storage/images/' . $newName;
     }
 
 }

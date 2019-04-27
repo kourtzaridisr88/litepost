@@ -95,13 +95,29 @@ class PostsController extends BaseController
             $meta->save();
         }
 
+        // Files Custom Fields
+        $files = $request->file('custom_file_fields') ?? [];
+
+        foreach($files as $key => $file) {  
+            // Upload The file
+            $path = $file->storeAs('public/files', $file->getClientOriginalName());
+
+            // Create The Meta
+            $meta = new PostMeta();
+
+            $meta->post_id = $post->id;
+            $meta->key = $key;
+            $meta->value = $file->getClientOriginalName(); // The Name Of the file
+
+            $meta->save();
+        }
+
         $post->categories()->attach($request->input('categories'));
 
         return redirect()->route('litepost.posts', [
             'postType' => $request->input('post_type_id')
         ]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -174,6 +190,27 @@ class PostsController extends BaseController
             }
 
             $meta->value = is_array($value) ? json_encode($value) : $value;
+
+            $meta->save();
+        }
+
+        // Files Custom Fields
+        $files = $request->file('custom_file_fields') ?? [];
+
+        foreach($files as $key => $file) {  
+            // Upload The file
+            $path = $file->storeAs('public/files', $file->getClientOriginalName());
+
+            $meta = $post->getMetaByKey($key);
+
+            if($meta == null) {
+                $meta = new PostMeta();
+
+                $meta->post_id = $post->id;
+                $meta->key = $key;
+            }
+
+            $meta->value = $file->getClientOriginalName(); // The Name Of the file
 
             $meta->save();
         }

@@ -13,7 +13,7 @@
             @foreach($images as $image)
                 <div class="image col-md-3">
                     <span class="image__action" data-action="click->gallery#deleteImage">&times;</span>
-                    <img src="/uploads/images/{{ $image }}" class="img-thumbnail">
+                    <img src="/storage/images/{{ $image }}" class="img-thumbnail">
                     <input type="hidden" name="custom_fields[{{ $customField->fieldable->name }}][]" value="{{ $image }}">
                 </div>
             @endforeach

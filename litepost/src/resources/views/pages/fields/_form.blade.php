@@ -34,6 +34,7 @@
         <option value="richtext">RichText</option>
         <option value="image">Image</option>
         <option value="gallery">Gallery</option>
+        <option value="file">File</option>
         <option value="select">Select (Not supported)</option>
         <option value="checkbox">CheckBox (Not supported)</option>
         <option value="relation">Relation (Not supported)</option>

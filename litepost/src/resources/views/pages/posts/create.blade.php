@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 pt-5">
-                    <form action="{{ route('litepost.posts') }}" method="POST" class="create-form">
+                    <form action="{{ route('litepost.posts') }}" method="POST" class="create-form" enctype="multipart/form-data">
                         @csrf
                         @include('litepost::pages.posts._form')
                     </form>

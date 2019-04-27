@@ -35,6 +35,8 @@
                         @include('litepost::pages.posts.fields._richtext')
                     @elseif($customField->fieldable_type == 'Litepost\Models\GalleryField')
                         @include('litepost::pages.posts.fields._gallery')
+                    @elseif($customField->fieldable_type == 'Litepost\Models\FileField')
+                        @include('litepost::pages.posts.fields._file')
                     @else
                         @include('litepost::pages.posts.fields._text')
                     @endif

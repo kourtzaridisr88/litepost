@@ -12,4 +12,13 @@ Route::group([
 
     // Images
     Route::post('images/store', 'ImagesController@store');
+
+    // Files
+    Route::get('files/{filename}', 'FilesController@show');
+
+    // Contact
+    Route::post('contact', 'ContactController@store');
+
+    // Subscribers
+    Route::post('subscribers', 'SubscribersController@store');
 });

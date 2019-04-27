@@ -15,7 +15,7 @@
                 <a class="nav__navbar-link" href="{{ route('litepost.post-types') }}"><i class="fab fa-dashcube"></i> Post types</a>
             </li>
             <li class="nav__navbar-item nav__navbar-item--full-width">
-                <a class="nav__navbar-link" href="{{ route('litepost.languages') }}"><i class="fab fa-dashcube"></i> Languages</a>
+                <a class="nav__navbar-link" href="{{ route('litepost.subscribers') }}"><i class="fab fa-dashcube"></i> Subscribers</a>
             </li>
         </ul>
     </nav><!-- ./sidenav -->

@@ -70,6 +70,18 @@ Route::group([
             'destroy'  => 'litepost.fields.destroy'
         ]
     ]);
+
+    // Subscribers
+    Route::resource('subscribers', 'SubscribersController', [
+        'names' => [
+            'index'    => 'litepost.subscribers',
+            'create'   => 'litepost.subscribers.create',
+            'store'    => 'litepost.subscribers.store',
+            'edit'     => 'litepost.subscribers.edit',
+            'update'   => 'litepost.subscribers.update',
+            'destroy'  => 'litepost.subscribers.destroy'
+        ]
+    ]);
 });
 
 Route::group([
