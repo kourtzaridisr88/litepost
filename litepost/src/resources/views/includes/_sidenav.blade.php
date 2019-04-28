@@ -1,5 +1,5 @@
 <aside class="sidebar">
-    <a class="sidebar__brand" href="#"><span>Lite</span>post</a>
+    <a class="sidebar__brand" href="{{ route('litepost.dashboard') }}"><span>Lite</span>post</a>
     <div class="sidebar__title">Navigation</div>
     <nav class="nav nav--horizontal nav--dark" role="navigation">
         <ul class="nav__navbar">

@@ -7,6 +7,7 @@ use Litepost\Models\PostType;
 use Litepost\Models\Post;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Tags\Url;
+use Illuminate\Support\Facades\Log;
 
 class SitemapCommand extends Command
 {
@@ -42,6 +43,7 @@ class SitemapCommand extends Command
      */
     public function handle()
     {
+        Log::info('generate sitemap');
         $sitemap = Sitemap::create();
 
         $postTypes = PostType::all();
