@@ -30,7 +30,7 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return  $this->from($this->data['email'])
+        return  $this->from(env('MAIL'))
                     ->view('litepost::emails.contact')
                     ->with([
                         'data' => $this->data
