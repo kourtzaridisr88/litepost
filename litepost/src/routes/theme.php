@@ -1,15 +1,10 @@
 <?php
 
-Route::get('/comming-soon', function() {
-    return view('comming-soon');
-})->name('comming-soon');
-
-Route::get('/about', 'Theme\PagesController@about')->middleware('comming.soon')->name('about');
+Route::get('/about', 'Theme\PagesController@about')->name('about');
 Route::group([
     'namespace' => 'Litepost\Http\Controllers\Theme',
     'middleware' => [
-        'web',
-        'comming.soon'
+        'web'
     ]
 ], function() {
     Route::get('/{postTypeSlug}', 'PostTypesController@index')->name('post-type');

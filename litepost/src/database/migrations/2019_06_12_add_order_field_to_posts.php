@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->bigInteger('post_type_id')->unsigned()->index();
             $table->foreign('post_type_id')->references('id')->on('post_types')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
