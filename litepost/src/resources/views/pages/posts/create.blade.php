@@ -44,7 +44,7 @@
     tinymce.init({
         selector: "textarea",
         themes: "modern",
-        plugins: ["paste", "lists"],
+        plugins: ["paste", "lists", "image"],
         menubar: false,
         branding: false,
         oninit : "setPlainText"

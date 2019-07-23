@@ -43,6 +43,7 @@
         </div><!-- ./container-fluid -->
     </section><!-- ./section -->
 
+    <input type="file" name="tinyimage" id="tinyimage">
 
 @endsection
 
@@ -52,10 +53,55 @@
     tinymce.init({
         selector: "textarea",
         themes: "modern",
-        plugins: ["paste", "lists"],
+        plugins: ["paste", "lists", "image", ],
+        paste_data_images: true,
+        image_advtab: true,
         menubar: false,
         branding: false,
-        oninit : "setPlainText"
+        oninit : "setPlainText",
+        file_picker_callback: function(callback, value, meta) {
+            if (meta.filetype == 'image') {
+                var input = document.querySelector('#tinyimage');
+                input.click();
+                input.addEventListener('change', function(){
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        callback(e.target.result, {
+                            alt: ''
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                })
+            }
+        }
     });
+
+    // tinymce.init({
+    //     selector: "textarea",
+    //     theme: "modern",
+    //     // paste_data_images: true,
+    //     plugins: [
+    //     "advlist lists link image charmap",
+    //     "paste"
+    //     ],
+    //     toolbar1: "link image",
+    //     image_advtab: true,
+    //     file_picker_callback: function(callback, value, meta) {
+    //         // if (meta.filetype == 'image') {
+    //         //     $('#upload').trigger('click');
+    //         //     $('#upload').on('change', function() {
+    //         //     var file = this.files[0];
+    //         //     var reader = new FileReader();
+    //         //     reader.onload = function(e) {
+    //         //         callback(e.target.result, {
+    //         //         alt: ''
+    //         //         });
+    //         //     };
+    //         //     reader.readAsDataURL(file);
+    //         //     });
+    //         // }
+    //     }
+    // });
 </script>   
 @endsection

@@ -58,7 +58,8 @@ class PostsController extends BaseController
             'post_type_id' => 'required',
             'title' => 'required',
             'slug' => 'required|unique:posts',
-            'status' => 'required'
+            'status' => 'required',
+            'order' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -79,6 +80,7 @@ class PostsController extends BaseController
         $post->title = $request->input('title');
         $post->slug = $slug;
         $post->status = $request->input('status');
+        $post->order = $request->input('order');
 
         $post->save();
 
@@ -152,7 +154,8 @@ class PostsController extends BaseController
             'post_type_id' => 'required',
             'title' => 'required',
             'slug' => 'required|unique:posts,slug,' . $id,
-            'status' => 'required'
+            'order' => 'required',
+            'status' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -171,6 +174,7 @@ class PostsController extends BaseController
 
         $post->post_type_id = $request->input('post_type_id');
         $post->title = $request->input('title');
+        $post->order = $request->input('order');
         $post->slug = $slug;
         $post->status = $request->input('status');
 

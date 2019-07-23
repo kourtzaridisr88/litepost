@@ -18,7 +18,7 @@ class PostTypesController extends BaseController
     {
         $postType = PostType::where('slug', $postTypeSlug)->firstOrFail();
 
-        $posts = $postType->posts()->paginate(15);
+        $posts = $postType->posts()->orderBy('order', 'ASC')->paginate(15);
 
         return view('theme.' . $postTypeSlug . '.index', [
             'posts' => $posts

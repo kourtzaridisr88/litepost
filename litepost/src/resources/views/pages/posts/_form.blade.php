@@ -62,6 +62,22 @@
             </div>
         </div>
 
+        <div class="card mb-5">
+            <div class="card-body">
+
+                <div class="form-group">
+                    <label for="order">Order</label>
+                    <input class="form-control form-control--small {{ $errors->has('order') ? ' is-invalid' : '' }}" type="number" name="order" id="order" value="value="{{ $val = isset($post->order) ? old('order', $post->order) : old('order') }}">
+
+                    @if ($errors->has('order'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('order') }}</strong>
+                        </span>
+                    @endif
+                </div><!-- ./form-group -->
+            </div>
+        </div>
+
         <div class="card mb-5" data-controller="livesearch" data-endpoint="/litepost/api/v1/categories" data-posttype="{{ $postType->id }}" data-action="turbolinks:before-cache@window->livesearch#teardown">
             <div class="card-body">
 
