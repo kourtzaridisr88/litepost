@@ -59,49 +59,8 @@
         menubar: false,
         branding: false,
         oninit : "setPlainText",
-        file_picker_callback: function(callback, value, meta) {
-            if (meta.filetype == 'image') {
-                var input = document.querySelector('#tinyimage');
-                input.click();
-                input.addEventListener('change', function(){
-                    var file = this.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        callback(e.target.result, {
-                            alt: ''
-                        });
-                    };
-                    reader.readAsDataURL(file);
-                })
-            }
-        }
+        images_upload_url: '/litepost/api/v1/images/storeImagesFromTiny',
+        automatic_uploads: true
     });
-
-    // tinymce.init({
-    //     selector: "textarea",
-    //     theme: "modern",
-    //     // paste_data_images: true,
-    //     plugins: [
-    //     "advlist lists link image charmap",
-    //     "paste"
-    //     ],
-    //     toolbar1: "link image",
-    //     image_advtab: true,
-    //     file_picker_callback: function(callback, value, meta) {
-    //         // if (meta.filetype == 'image') {
-    //         //     $('#upload').trigger('click');
-    //         //     $('#upload').on('change', function() {
-    //         //     var file = this.files[0];
-    //         //     var reader = new FileReader();
-    //         //     reader.onload = function(e) {
-    //         //         callback(e.target.result, {
-    //         //         alt: ''
-    //         //         });
-    //         //     };
-    //         //     reader.readAsDataURL(file);
-    //         //     });
-    //         // }
-    //     }
-    // });
 </script>   
 @endsection

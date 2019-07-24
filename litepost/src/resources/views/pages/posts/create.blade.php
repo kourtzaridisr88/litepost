@@ -44,10 +44,14 @@
     tinymce.init({
         selector: "textarea",
         themes: "modern",
-        plugins: ["paste", "lists", "image"],
+        plugins: ["paste", "lists", "image", ],
+        paste_data_images: true,
+        image_advtab: true,
         menubar: false,
         branding: false,
-        oninit : "setPlainText"
+        oninit : "setPlainText",
+        images_upload_url: '/litepost/api/v1/images/storeImagesFromTiny',
+        automatic_uploads: true
     });
 </script>   
 @endsection

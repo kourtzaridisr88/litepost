@@ -67,7 +67,7 @@
 
                 <div class="form-group">
                     <label for="order">Order</label>
-                    <input class="form-control form-control--small {{ $errors->has('order') ? ' is-invalid' : '' }}" type="number" name="order" id="order" value="value="{{ $val = isset($post->order) ? old('order', $post->order) : old('order') }}">
+                    <input class="form-control form-control--small {{ $errors->has('order') ? ' is-invalid' : '' }}" type="number" name="order" id="order" value="{{ $val = isset($post->order) ? old('order', $post->order) : old('order') }}">
 
                     @if ($errors->has('order'))
                         <span class="invalid-feedback" role="alert">

@@ -12,6 +12,7 @@ Route::group([
 
     // Images
     Route::post('images/store', 'ImagesController@store');
+    Route::post('images/storeImagesFromTiny', 'ImagesController@storeImagesFromTiny');
 
     // Files
     Route::get('files/{filename}', 'FilesController@show');

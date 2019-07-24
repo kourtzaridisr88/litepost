@@ -39,6 +39,23 @@ class ImagesController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function storeImagesFromTiny(Request $request)
+    {
+        $image = $request->file('file');
+
+        $uploadedImage = $image->store('public/images');
+
+        return response()->json([
+            'location' =>  str_replace('public', '/storage', $uploadedImage)
+        ], 200);   
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function imageResizer($name, $width)
     {
         $path = public_path() . '/storage/images/';
