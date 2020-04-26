@@ -20,20 +20,20 @@ export default class extends Controller
     connect()
     {
         this.choices = new Choices(this.inputTarget, {
-            removeItemButton: true
+            removeItemButton: true,
+            searchResultLimit: 10
         });
     }
 
     search(event)
     {
         var value = event.detail.value;
-        console.log(this.postTypeId);
         if(value.length < 4) {
             return false;
         }
 
-        var uri = this.endpoint + '?post_type_id=' + this.postTypeId + '&search=' + value;
-
+        var uri = this.endpoint + '?post_type_id=' + this.postTypeId + '&title=' + value;
+        
         this.choices.ajax((callback) => {
            fetch(uri)
                 .then((response) => {
